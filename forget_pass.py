@@ -9,7 +9,7 @@ class forgotpass:
         self.frm_forget.place(x=225,y=65)
 
        
-        self.lbl_forget=Label(master=self.frm_forget,text="Find Accound",font=("Goudy Old Style",20),bg="white",cursor="cross")
+        self.lbl_forget=Label(master=self.frm_forget,text="Find Account",font=("Goudy Old Style",20),bg="white",cursor="cross")
         self.lbl_forget.place(x=110,y=10)
         self.ent_email=Entry(master=self.frm_forget,width=30,font=("Arial",10),
                         border=2)
