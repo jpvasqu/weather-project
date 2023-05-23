@@ -5,13 +5,29 @@ import mysql.connector
 
 class mygui:
     def __init__(self):
-        self.data= mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='',
-            database='mydatabase'
-            )
+        self.data = mysql.connector.connect(
+        host = 'localhost',
+        user = 'root',
+        password = ''
+        )
 
+        cursor = self.data.cursor()
+        #CREATE A DATABASE AUTOMATICALLY
+        cursor.execute("show databases like %s", ("mydatabase",))
+        result = cursor.fetchone()
+
+        if result is None:
+
+            cursor.execute("create database mydatabase")
+            cursor.execute("use mydatabase")
+            cursor.execute("create table data(id int not null primary key auto_increment, email varchar(30), time  timestamp)")
+        
+            self.data.commit()
+            
+        else:
+
+            cursor.execute("use portal")
+            self.data.commit()
         self.main=tk.Tk()
         self.main.title("Log In")
         self.main.geometry("854x480")
@@ -131,5 +147,3 @@ class mygui:
         else:
              self.ent_password.config(show="*")
              self.btn_show.config(text="Show")
-if __name__ == "__main__":   
-    mygui()
